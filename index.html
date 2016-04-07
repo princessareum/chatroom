@@ -7,14 +7,24 @@
   </head>
   <body ng-controller="mainCtrl">
     <div class="main-container">
-      <h1> DevMountain Chat Room </h1>
+      <h1> Chit Chat </h1>
       <form ng-submit="postData()">
         <input class="form-control text-box" type="text" ng-model="message" placeholder="Message">
-      </form>
+      </form> 
+      <input class="form-control text-box" type="text" ng-model="search" placeholder="Search">
+     
+     <div class="options">         
+      
+                            
+        <button ng-click="sortDirectionChange()">Sort by time</button>
+      </div>
+      
+      
       <div class="messages-container">
-        <p ng-repeat="message in messages"> {{message.text}} </p>
+        <p ng-repeat="message in messages |filter:search | orderBy: 'createdAt': sortDirection"> <br>{{message.text}}  <br> {{ message.createdAt | date: 'dd/MM/yyyy hh:mm:ss a'}}<br></p>
       </div>
     </div>
+    
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
     <script src="js/app.js"></script>
